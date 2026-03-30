@@ -1,0 +1,1239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tom Vazquez · Software Engineer & Founder</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --ink: #1a1814;
+        --ink2: #3d3a34;
+        --muted: #7a7670;
+        --accent: #c8522a;
+        --accent2: #e8a87c;
+        --bg: #f5f2ec;
+        --bg2: #ede9e1;
+        --line: rgba(26, 24, 20, 0.12);
+        --serif: "Playfair Display", Georgia, serif;
+        --mono: "DM Mono", monospace;
+        --sans: "DM Sans", sans-serif;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --ink: #f0ece4;
+          --ink2: #c8c4bc;
+          --muted: #888480;
+          --accent: #e8784a;
+          --accent2: #c8785c;
+          --bg: #161410;
+          --bg2: #1e1c18;
+          --line: rgba(240, 236, 228, 0.1);
+        }
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--sans);
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.7;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 2.5rem;
+        background: var(--bg);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(8px);
+      }
+      .nav-name {
+        font-family: var(--mono);
+        font-size: 13px;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+      }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+      .nav-links a {
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none;
+        letter-spacing: 0.03em;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 8rem 2.5rem 5rem;
+        border-bottom: 1px solid var(--line);
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-eyebrow {
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.15em;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        width: 32px;
+        height: 1px;
+        background: var(--accent);
+      }
+      .hero-headline {
+        font-family: var(--serif);
+        font-size: clamp(2.8rem, 6vw, 5.5rem);
+        font-weight: 700;
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        max-width: 900px;
+        margin-bottom: 1.5rem;
+      }
+      .hero-headline em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .hero-sub {
+        font-size: 1.05rem;
+        color: var(--muted);
+        max-width: 580px;
+        line-height: 1.75;
+        font-weight: 300;
+      }
+      .hero-scroll {
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+      .hero-scroll span {
+        animation: bounce 2s ease-in-out infinite;
+        display: inline-block;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(4px);
+        }
+      }
+
+      .hero-bg-number {
+        position: absolute;
+        right: -0.05em;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: var(--serif);
+        font-size: clamp(12rem, 22vw, 22rem);
+        font-weight: 700;
+        color: var(--line);
+        line-height: 1;
+        user-select: none;
+        pointer-events: none;
+      }
+
+      /* SECTIONS */
+      section {
+        padding: 6rem 2.5rem;
+        border-bottom: 1px solid var(--line);
+      }
+      .section-label {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 3rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .section-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--line);
+        max-width: 80px;
+      }
+
+      /* ORIGIN STORY */
+      .origin-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: start;
+      }
+      .origin-pull {
+        font-family: var(--serif);
+        font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+        line-height: 1.4;
+        font-weight: 400;
+        color: var(--ink);
+      }
+      .origin-pull em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .origin-body {
+        color: var(--ink2);
+        line-height: 1.85;
+        font-weight: 300;
+      }
+      .origin-body p + p {
+        margin-top: 1.25rem;
+      }
+      .stat-row {
+        display: flex;
+        gap: 2.5rem;
+        margin-top: 2.5rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--line);
+      }
+      .stat {
+      }
+      .stat-num {
+        font-family: var(--serif);
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .stat-label {
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+      }
+
+      /* TIMELINE */
+      .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: var(--line);
+      }
+      .tl-item {
+        position: relative;
+        padding-left: 3rem;
+        margin-bottom: 4rem;
+      }
+      .tl-item::before {
+        content: "";
+        position: absolute;
+        left: -4px;
+        top: 6px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 1.5px solid var(--muted);
+        transition: all 0.3s;
+      }
+      .tl-item:hover::before {
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+      .tl-item.highlight::before {
+        background: var(--accent);
+        border-color: var(--accent);
+        width: 11px;
+        height: 11px;
+        left: -5px;
+      }
+      .tl-date {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        color: var(--accent);
+        margin-bottom: 0.5rem;
+      }
+      .tl-role {
+        font-family: var(--serif);
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 0.25rem;
+      }
+      .tl-company {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 0.75rem;
+        font-family: var(--mono);
+        letter-spacing: 0.05em;
+      }
+      .tl-body {
+        color: var(--ink2);
+        font-size: 0.95rem;
+        line-height: 1.8;
+        font-weight: 300;
+      }
+      .tl-tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+      }
+      .tl-tag {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        padding: 3px 10px;
+        border: 1px solid var(--line);
+        border-radius: 2px;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+      .tl-highlight-tag {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+      }
+
+      /* SKILLS */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5px;
+        background: var(--line);
+        border: 1px solid var(--line);
+      }
+      .skill-cell {
+        background: var(--bg);
+        padding: 1.5rem;
+        transition: background 0.2s;
+      }
+      .skill-cell:hover {
+        background: var(--bg2);
+      }
+      .skill-cell-label {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+      }
+      .skill-cell-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .skill-pill {
+        font-size: 13px;
+        color: var(--ink2);
+        font-weight: 300;
+        padding: 3px 0;
+        border-bottom: 1px solid transparent;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+        cursor: default;
+      }
+      .skill-pill::after {
+        content: "·";
+        margin-left: 0.4rem;
+        color: var(--line);
+      }
+      .skill-pill:last-child::after {
+        display: none;
+      }
+      .skill-pill:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      /* KERYX LABS SECTION */
+      .keryx-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: start;
+        margin-bottom: 4rem;
+      }
+      .keryx-pull {
+        font-family: var(--serif);
+        font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+        line-height: 1.4;
+        font-weight: 400;
+        color: var(--ink);
+      }
+      .keryx-pull em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .keryx-manifesto {
+        color: var(--ink2);
+        line-height: 1.85;
+        font-weight: 300;
+      }
+      .keryx-manifesto p + p {
+        margin-top: 1rem;
+      }
+      .keryx-manifesto strong {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5px;
+        background: var(--line);
+        border: 1px solid var(--line);
+        margin-top: 3rem;
+      }
+      .tool-card {
+        background: var(--bg);
+        padding: 2rem;
+        transition: background 0.2s;
+      }
+      .tool-card:hover {
+        background: var(--bg2);
+      }
+      .tool-card-eyebrow {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+      }
+      .tool-card-name {
+        font-family: var(--serif);
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 0.5rem;
+      }
+      .tool-card-tagline {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        margin-bottom: 1rem;
+        letter-spacing: 0.04em;
+      }
+      .tool-card-body {
+        font-size: 0.9rem;
+        color: var(--ink2);
+        line-height: 1.8;
+        font-weight: 300;
+      }
+      .tool-card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 1rem;
+      }
+      .tool-card-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+        text-decoration: none;
+        margin-top: 1.25rem;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s;
+      }
+      .tool-card-link:hover {
+        border-color: var(--accent);
+      }
+
+      .keryx-ecosystem {
+        margin-top: 3rem;
+        padding: 2rem;
+        border: 1px solid var(--line);
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.06em;
+        line-height: 2;
+      }
+      .keryx-ecosystem-label {
+        color: var(--accent);
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+      .eco-row {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .eco-name {
+        color: var(--ink);
+        min-width: 160px;
+      }
+      .eco-role {
+        color: var(--accent);
+        min-width: 80px;
+      }
+      .eco-desc {
+        color: var(--muted);
+      }
+
+      /* PHILOSOPHY */
+      .phil-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+      }
+      .phil-card {
+        border-top: 1px solid var(--line);
+        padding-top: 1.5rem;
+      }
+      .phil-num {
+        font-family: var(--serif);
+        font-size: 4rem;
+        color: var(--line);
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+      .phil-title {
+        font-family: var(--serif);
+        font-size: 1.2rem;
+        color: var(--ink);
+        margin-bottom: 0.75rem;
+      }
+      .phil-body {
+        font-size: 0.9rem;
+        color: var(--muted);
+        line-height: 1.8;
+        font-weight: 300;
+      }
+
+      /* CONTACT */
+      .contact-inner {
+        max-width: 640px;
+      }
+      .contact-headline {
+        font-family: var(--serif);
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        font-weight: 700;
+        line-height: 1.15;
+        margin-bottom: 1.5rem;
+      }
+      .contact-headline em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .contact-body {
+        color: var(--muted);
+        margin-bottom: 2.5rem;
+        font-weight: 300;
+      }
+      .contact-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .contact-link {
+        font-family: var(--mono);
+        font-size: 13px;
+        letter-spacing: 0.05em;
+        padding: 0.75rem 1.5rem;
+        border: 1px solid var(--line);
+        color: var(--ink);
+        text-decoration: none;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .contact-link:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .contact-link.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+      .contact-link.primary:hover {
+        opacity: 0.85;
+      }
+
+      /* FOOTER */
+      footer {
+        padding: 2rem 2.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+      }
+
+      /* ANIMATIONS */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          padding: 1rem 1.25rem;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hero,
+        section {
+          padding-left: 1.25rem;
+          padding-right: 1.25rem;
+        }
+        .origin-grid,
+        .keryx-header {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        .phil-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .tools-grid {
+          grid-template-columns: 1fr;
+        }
+        footer {
+          flex-direction: column;
+          gap: 0.5rem;
+          text-align: center;
+        }
+      }
+      .tl-item:hover {
+        transform: translateX(4px);
+        transition: transform 0.2s ease;
+      }
+      .hero-bg-number {
+        opacity: 0.6;
+        letter-spacing: -0.05em;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <span class="nav-name">Tom Vazquez</span>
+      <div class="nav-links">
+        <a href="#story">Story</a>
+        <a href="#keryx">KeryxLabs</a>
+        <a href="#skills">Skills</a>
+        <a href="#journey">Journey</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg-number">10</div>
+      <div class="hero-eyebrow">Software Engineer · Founder</div>
+      <h1 class="hero-headline">
+        Built from<br />
+        <em>curiosity,</em><br />
+        not a classroom.
+      </h1>
+      <p class="hero-sub">
+        I turn constraints into systems. From an auto parts counter to
+        distributed architecture to founding a data reasoning lab. Self-taught,
+        relentlessly curious, still chasing that
+        <em>woah, that's cool</em> moment.
+      </p>
+
+      <div class="hero-scroll"><span>↓</span> Scroll to read the story</div>
+    </section>
+
+    <!-- ORIGIN STORY -->
+    <section id="story">
+      <div class="section-label">The origin</div>
+      <div class="origin-grid fade-in">
+        <div>
+          <p class="origin-pull">
+            I wanted internet at sixteen. Couldn't afford it. So I
+            <em>built an antenna</em> to find the signal instead.
+          </p>
+          <div class="stat-row">
+            <div class="stat">
+              <div class="stat-num">10+</div>
+              <div class="stat-label">Years building</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">4</div>
+              <div class="stat-label">Industries mastered</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">0</div>
+              <div class="stat-label">CS degrees</div>
+            </div>
+          </div>
+        </div>
+        <div class="origin-body">
+          <p>
+            Being too broke for internet, pushed me to build a
+            high-gain antenna out of an old satellite dish and a USB WiFi
+            adapter just to find a signal. That's where I learned my first real
+            lesson: if you want a system to work, you have to understand exactly
+            how its rules are built and how to enforce them.
+          </p>
+          <p>
+            I came to the United States a couple years before my first real job.
+            Barely spoke English. Couldn't afford college. So I took the only
+            door open to me: a part-time counter job at an auto parts store. No
+            plan. Just a willingness to figure it out, the same instinct that
+            built the antenna.
+          </p>
+          <p>
+            That instinct has found bigger systems to work on ever since. Today
+            it's grown into a decade of professional architecture, the last
+            several years in the high-stakes world of pharmacy and clinical
+            data. A mistake here isn't just a bug. It's a liability. I don't
+            believe in moving fast and breaking things. I build systems with a
+            constitution: structural rules that ensure data is verified, signed,
+            and persistent before it ever moves.
+          </p>
+          <p>
+            Right now I'm building at the frontier of agentic orchestration.
+            Engines that let AI organize and reason about information through
+            context compression, moving past simple databases into something
+            closer to a nervous system. The kid who built an antenna to find a
+            signal is still here. He just found a bigger problem to solve.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- KERYXLABS -->
+    <section id="keryx">
+      <div class="section-label">What I'm building</div>
+      <div class="keryx-header fade-in">
+        <div>
+          <p class="keryx-pull">
+            Tech lost something. Not to AI. Before AI. KeryxLabs exists to build
+            it back.
+          </p>
+        </div>
+        <div class="keryx-manifesto">
+          <p>
+            The internet used to feel like people. Now it feels like interfaces.
+          </p>
+          <p>
+            KeryxLabs is a <strong>data integration and reasoning lab</strong>.
+            Not an AI lab. AI is a lens. Data is the substance. Humans are still
+            the point.
+          </p>
+          <p>
+            We build tools that augment how you think. Infrastructure that makes
+            data <strong>legible and actionable</strong>. Software with a point
+            of view.
+          </p>
+        </div>
+      </div>
+
+      <div class="tools-grid fade-in">
+        <div class="tool-card">
+          <div class="tool-card-eyebrow">Herald · Orchestration</div>
+          <div class="tool-card-name">KeryxFlux</div>
+          <div class="tool-card-tagline">
+            Cloud-native declarative data orchestration for .NET
+          </div>
+          <div class="tool-card-body">
+            Self-hosted, code-extensible data orchestration. Think Zapier meets
+            Apache Camel, but cloud-native, YAML-configured, and open source.
+            Multi-protocol (HTTP, TCP, RabbitMQ, Kafka, gRPC), horizontally
+            scalable, hot-reload config, and a plugin architecture for custom
+            transformations including AI/ML model integration.<br /><br />
+            Single Docker image, multiple deployment modes. Designed to be the
+            infrastructure layer you build integrations on top of. Not an
+            opinionated turnkey.
+          </div>
+          <div class="tool-card-tags">
+            <span class="tl-tag">.NET 8</span>
+            <span class="tl-tag">Docker</span>
+            <span class="tl-tag">RabbitMQ</span>
+            <span class="tl-tag">Kafka</span>
+            <span class="tl-tag">gRPC</span>
+            <span class="tl-tag">Apache 2.0</span>
+          </div>
+          <a
+            href="https://github.com/keryxlabs/KeryxFlux"
+            class="tool-card-link"
+            target="_blank"
+            >github.com/keryxlabs/KeryxFlux ↗</a
+          >
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-card-eyebrow">Tools · Code Intelligence</div>
+          <div class="tool-card-name">ACC</div>
+          <div class="tool-card-tagline">
+            Adaptive Codec Context: a living physics engine for codebases
+          </div>
+          <div class="tool-card-body">
+            ACC transforms codebases into a dimensional semantic graph where
+            every entity is measured across four dimensions: Stability, Logic,
+            Friction, and Autonomy. The AVEC vector. No ML, no black box. Pure
+            observable metrics: git churn, cyclomatic complexity, dependency
+            edges, contributor count.<br /><br />
+            Query your codebase like a system. Find fragile chokepoints, run
+            impact analysis before refactoring, discover similar implementations
+            by dimensional profile. Exposed via VS Code extension, Neovim
+            plugin, CLI, and MCP server.
+          </div>
+          <div class="tool-card-tags">
+            <span class="tl-tag">Rust</span>
+            <span class="tl-tag">SurrealDB</span>
+            <span class="tl-tag">VS Code</span>
+            <span class="tl-tag">Neovim</span>
+            <span class="tl-tag">MCP</span>
+            <span class="tl-tag">Apache 2.0</span>
+          </div>
+          <a
+            href="https://github.com/KeryxLabs/KeryxInstrumenta"
+            class="tool-card-link"
+            target="_blank"
+            >github.com/KeryxLabs/KeryxInstrumenta ↗</a
+          >
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-card-eyebrow">Tools · AI Memory</div>
+          <div class="tool-card-name">STTP-MCP</div>
+          <div class="tool-card-tagline">
+            Spatio-Temporal Transfer Protocol: persistent AI memory
+          </div>
+          <div class="tool-card-body">
+            Every AI session starts from zero. STTP encodes the meaning of a
+            conversation directly as a typed intermediate representation with
+            confidence-weighted fields and AVEC state vectors that describe the
+            cognitive geometry of the conversation at the moment of
+            compression.<br /><br />
+            An MCP server exposes this as five tools any model can call: store
+            context at a milestone, retrieve it by attractor resonance,
+            calibrate session state, list stored nodes, and shift reasoning
+            posture intentionally. Model-agnostic by design. One session stores,
+            another retrieves, and the state is self-sufficient enough to
+            reconstruct from.
+          </div>
+          <div class="tool-card-tags">
+            <span class="tl-tag">.NET 10</span>
+            <span class="tl-tag">SurrealDB</span>
+            <span class="tl-tag">MCP</span>
+            <span class="tl-tag">Docker</span>
+            <span class="tl-tag">Cross-model</span>
+            <span class="tl-tag">Apache 2.0</span>
+          </div>
+          <a
+            href="https://github.com/KeryxLabs/KeryxInstrumenta"
+            class="tool-card-link"
+            target="_blank"
+            >github.com/KeryxLabs/KeryxInstrumenta ↗</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-label">Toolkit</div>
+      <div class="skills-grid fade-in">
+        <div class="skill-cell">
+          <div class="skill-cell-label">Languages</div>
+          <div class="skill-cell-items">
+            <span class="skill-pill">C# / .NET</span>
+            <span class="skill-pill">Rust</span>
+            <span class="skill-pill">SQL</span>
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">TypeScript</span>
+            <span class="skill-pill">PowerShell</span>
+            <span class="skill-pill">Bash</span>
+          </div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-cell-label">Infrastructure</div>
+          <div class="skill-cell-items">
+            <span class="skill-pill">Docker</span>
+            <span class="skill-pill">RedHat Linux</span>
+            <span class="skill-pill">Distributed systems</span>
+            <span class="skill-pill">RabbitMQ</span>
+            <span class="skill-pill">MassTransit</span>
+            <span class="skill-pill">Redis</span>
+            <span class="skill-pill">YAML DevOps</span>
+            <span class="skill-pill">Azure DevOps</span>
+          </div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-cell-label">Observability</div>
+          <div class="skill-cell-items">
+            <span class="skill-pill">OpenTelemetry</span>
+            <span class="skill-pill">Grafana</span>
+            <span class="skill-pill">Prometheus</span>
+            <span class="skill-pill">Loki</span>
+            <span class="skill-pill">Tempo</span>
+          </div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-cell-label">Data & Databases</div>
+          <div class="skill-cell-items">
+            <span class="skill-pill">SQL Server / T-SQL</span>
+            <span class="skill-pill">MySQL</span>
+            <span class="skill-pill">SurrealDB</span>
+            <span class="skill-pill">Query optimization</span>
+            <span class="skill-pill">ETL pipelines</span>
+            <span class="skill-pill">Stored procedures</span>
+          </div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-cell-label">Management & People</div>
+          <div class="skill-cell-items">
+            <span class="skill-pill">Team leadership</span>
+            <span class="skill-pill">Mentorship</span>
+            <span class="skill-pill">Cross-functional collaboration</span>
+            <span class="skill-pill">Technical roadmaps</span>
+            <span class="skill-pill">Hiring & onboarding</span>
+          </div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-cell-label">Architecture & Patterns</div>
+          <div class="skill-cell-items">
+            <span class="skill-pill">Microservices</span>
+            <span class="skill-pill">CQRS</span>
+            <span class="skill-pill">Event-driven</span>
+            <span class="skill-pill">DDD / Hexagonal</span>
+            <span class="skill-pill">Plugin systems</span>
+            <span class="skill-pill">TDD</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOURNEY / TIMELINE -->
+    <section id="journey">
+      <div class="section-label">The journey</div>
+      <div class="timeline">
+        <div class="tl-item fade-in">
+          <div class="tl-date">2015–2020</div>
+          <div class="tl-role">Store Manager</div>
+          <div class="tl-company">O'Reilly Auto Parts, Gilbert AZ</div>
+          <div class="tl-body">
+            Started as a part-time counter worker with no car knowledge and
+            barely enough English to get through a shift. Three months later:
+            team lead. One year in: assistant manager. Not long after: my own
+            store, managing employees twice my age.<br /><br />
+            <strong style="color: var(--ink); font-weight: 500"
+              >The first person in store history to turn a profit.</strong
+            >
+            Then moved to a larger store and ran 8 consecutive months of
+            record-breaking sales. Grew market share 30% through close
+            relationships with enterprise account holders and industry partners.
+          </div>
+          <div class="tl-tag-row">
+            <span class="tl-tag">Operations</span>
+            <span class="tl-tag">Leadership</span>
+            <span class="tl-tag">KPI Strategy</span>
+            <span class="tl-tag tl-highlight-tag"
+              >First-ever profitable store</span
+            >
+          </div>
+        </div>
+
+        <div class="tl-item fade-in">
+          <div class="tl-date">Nov 2020–Sep 2022</div>
+          <div class="tl-role">Data Engineer</div>
+          <div class="tl-company">
+            O'Reilly Auto Parts, eCatalog Division, Phoenix AZ
+          </div>
+          <div class="tl-body">
+            Hired into their eCatalog department with zero IT background.
+            Started with Excel. Within 6 months, writing production SQL.
+            Designed and executed data manipulation and curation processes used
+            by technicians across the division.<br /><br />
+            Redesigned SQL ETL pipelines handling
+            <strong style="color: var(--ink); font-weight: 500"
+              >20M+ rows/hour</strong
+            >: adding validation, indexing, and monitoring that improved data
+            quality by 85% and analyst productivity by 38%. Built Access
+            Database applications supporting curation and reporting workflows.
+            Created and delivered data-analysis training for an international
+            acquisition.
+          </div>
+          <div class="tl-tag-row">
+            <span class="tl-tag">SQL</span>
+            <span class="tl-tag">Python</span>
+            <span class="tl-tag">ETL Pipelines</span>
+            <span class="tl-tag">Data Modeling</span>
+            <span class="tl-tag tl-highlight-tag">Self-taught engineer</span>
+          </div>
+        </div>
+
+        <div class="tl-item fade-in">
+          <div class="tl-date">Sep 2022–May 2024</div>
+          <div class="tl-role">Senior Data Engineer</div>
+          <div class="tl-company">
+            O'Reilly Auto Parts, eCatalog Division, Phoenix AZ
+          </div>
+          <div class="tl-body">
+            Lead developer on a team of 3 building internal CAT
+            (computer-assisted translation) tools using .NET Core and MSSQL.
+            Six-month dev cycle, 2-week rollout. Delivered a best-match
+            prediction engine using prior translations and metadata, batch
+            import across formats, QA↔Translator workflows, and context-based
+            auto-translation.<br /><br />
+            Completed a Spanish parts catalog translation
+            <strong style="color: var(--ink); font-weight: 500"
+              >in 1 year vs. an estimated 3</strong
+            >, with over 50% measured productivity improvement vs. pre-tool
+            baseline. Tuned a critical stored procedure processing ~1 billion
+            records, reducing runtime from ~1 hour to ~10 minutes. Recognized by
+            international teams for significant impact on translation
+            throughput.
+          </div>
+          <div class="tl-tag-row">
+            <span class="tl-tag">C# / .NET Core</span>
+            <span class="tl-tag">SQL Server</span>
+            <span class="tl-tag">Query Optimization</span>
+            <span class="tl-tag">Internationalization</span>
+            <span class="tl-tag tl-highlight-tag">3-year job done in 1</span>
+          </div>
+        </div>
+
+        <div class="tl-item highlight fade-in">
+          <div class="tl-date">May 2024–Present</div>
+          <div class="tl-role">Software Engineer, Interoperability</div>
+          <div class="tl-company">OnePoint PatientCare, Tempe AZ</div>
+          <div class="tl-body">
+            Architected and led a 4-person team migrating a monolith to
+            microservices over 9 months. Built an event-orchestrator using
+            <strong style="color: var(--ink); font-weight: 500"
+              >RabbitMQ + MassTransit handling &gt;2,000 msgs/min</strong
+            >, improving throughput ~4× by eliminating DB waits, locks, and
+            deadlocks. Reduced third-party API calls 30%.<br /><br />
+            Consolidated 20+ Windows services into a distributed, YAML-driven
+            plugin system (Docker, Redis, hybrid cache) supporting dynamic
+            integrations across HTTP, SFTP, TCP, and WCF. Led observability
+            rollout via OpenTelemetry and built Grafana plugins in Rust, React,
+            and Go used by business teams for medication coverage and nurse
+            workflow insights.<br /><br />
+            Built Rust tools for high-volume data processing: a CLI parsing
+            <strong style="color: var(--ink); font-weight: 500"
+              >10GB+ log files in under 30 seconds</strong
+            >
+            and a web-based log viewer for internal teams. Created a DST
+            (Deterministic Simulation Test) suite in C# to simulate failure
+            scenarios and enable secure rollouts.
+          </div>
+          <div class="tl-tag-row">
+            <span class="tl-tag">C# / .NET</span>
+            <span class="tl-tag">Rust</span>
+            <span class="tl-tag">RabbitMQ</span>
+            <span class="tl-tag">Docker</span>
+            <span class="tl-tag">OpenTelemetry</span>
+            <span class="tl-tag">Grafana</span>
+            <span class="tl-tag">Healthcare EMR</span>
+            <span class="tl-tag tl-highlight-tag">Innovation Award 2024</span>
+          </div>
+        </div>
+
+        <div class="tl-item highlight fade-in">
+          <div class="tl-date">2026–Present</div>
+          <div class="tl-role">Founder</div>
+          <div class="tl-company">KeryxLabs</div>
+          <div class="tl-body">
+            Started from a research question: can behavioral state in AI be
+            mathematically encoded, transmitted, and reconstructed across any
+            transformer architecture? Ran systematic experiments across 9 models
+            from 8 companies spanning 3 countries.
+            <strong style="color: var(--ink); font-weight: 500"
+              >100% convergence rate. Confidence clustering at σ=0.031.</strong
+            ><br /><br />
+            That research became the foundation of KeryxLabs, a modern data
+            integration and reasoning lab. Not an AI lab. The mission: build
+            tools that augment how you think instead of replacing your thinking.
+            Infrastructure that makes data legible. Software with a point of
+            view.<br /><br />
+            Currently shipping:
+            <strong style="color: var(--accent); font-weight: 500"
+              >KeryxFlux</strong
+            >
+            (cloud-native declarative data orchestration),
+            <strong style="color: var(--accent); font-weight: 500">ACC</strong>
+            (codebase dimensional intelligence), and
+            <strong style="color: var(--accent); font-weight: 500"
+              >STTP-MCP</strong
+            >
+            (persistent AI memory protocol). All open source, all Apache 2.0.
+          </div>
+          <div class="tl-tag-row">
+            <span class="tl-tag">Founder</span>
+            <span class="tl-tag">Open Source</span>
+            <span class="tl-tag">Systems Design</span>
+            <span class="tl-tag">Research</span>
+            <span class="tl-tag tl-highlight-tag">KeryxLabs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section>
+      <div class="section-label">How I work</div>
+      <div class="phil-grid fade-in">
+        <div class="phil-card">
+          <div class="phil-num">01</div>
+          <div class="phil-title">Constraints are the brief</div>
+          <div class="phil-body">
+            Every great solution I've built came out of a real limitation: no
+            budget, old technology, tight deadline. Constraints don't block
+            creativity. They focus it.
+          </div>
+        </div>
+        <div class="phil-card">
+          <div class="phil-num">02</div>
+          <div class="phil-title">Understand before you build</div>
+          <div class="phil-body">
+            I was a store manager before I was an engineer. That taught me to
+            understand the full system: the people, the process, the real
+            problem, before writing a line of code.
+          </div>
+        </div>
+        <div class="phil-card">
+          <div class="phil-num">03</div>
+          <div class="phil-title">
+            That <em>“woah, that’s cool”</em> feeling
+          </div>
+          <div class="phil-body">
+            The kid who read encyclopedias for fun never went away. I still
+            chase that feeling: the moment a complex system clicks into place
+            and suddenly makes sense. That's the work.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="contact-inner fade-in">
+        <h2 class="contact-headline">
+          Let's build something<br /><em>worth building.</em>
+        </h2>
+        <p class="contact-body">
+          I'm looking for problems worth solving. Senior roles, complex systems,
+          or something unconventional. If you're building something where
+          curiosity matters more than checklists, let's talk.
+        </p>
+
+        <div class="contact-links">
+          <a
+            href="/cdn-cgi/l/email-protection#492d2d3d3d242467787a092e24282025672a2624"
+            class="contact-link primary"
+            >→ Send a message</a
+          >
+          <a
+            href="https://www.linkedin.com/in/donato-vazquez"
+            class="contact-link"
+            target="_blank"
+            >LinkedIn ↗</a
+          >
+          <a
+            href="https://github.com/theelevators"
+            class="contact-link"
+            target="_blank"
+            >GitHub ↗</a
+          >
+          <a
+            href="https://github.com/KeryxLabs"
+            class="contact-link"
+            target="_blank"
+            >KeryxLabs ↗</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>Built with intention, not a template.</span>
+      <span>© 2026 Tom Vazquez</span>
+    </footer>
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => entry.target.classList.add("visible"), i * 120);
+            }
+          });
+          
+        },
+        { threshold: 0.1 },
+      );
+
+      document
+        .querySelectorAll(".fade-in")
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
